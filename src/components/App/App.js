@@ -1,6 +1,7 @@
 import "./App.css";
 
 import Article from "../Article/Article";
+import Cart from "../Cart/Cart";
 import Header from "../Header/Header";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
     <div className="App">
       <Header alt="logo" />
       {list}
+      <Cart />
     </div>
   );
 }
