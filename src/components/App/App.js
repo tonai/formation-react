@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import "./App.css";
+
+import useArticles from '../../hooks/useArticles';
 
 import Article from "../Article/Article";
 import Cart from "../Cart/Cart";
@@ -10,13 +12,7 @@ import Title from "../Title/Title";
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3001/articles')
-      .then(response => response.json())
-      .then(json => setArticles(json));
-  }, []);
+  const articles = useArticles();
 
   function handleClick() {
     setCounter(counter + 1);
