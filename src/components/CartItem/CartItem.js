@@ -1,18 +1,17 @@
-import { useState } from 'react';
 import './CartItem.css';
 
 function CartItem(props) {
-  const [quantity, setQuantity] = useState(1);
-  const total = props.price * quantity;
+  const total = props.price * props.quantity;
 
   function handleMinus() {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+    if (props.quantity > 0) {
+      props.setQuantity(props.quantity - 1, props.id);
     }
   }
 
   function handlePlus() {
-    setQuantity(quantity + 1);
+    props.setQuantity(props.quantity + 1, props.id);
+    props.setQuantity(props.quantity + 1, props.id);
   }
 
   return (
@@ -23,9 +22,9 @@ function CartItem(props) {
         <button
           type="button"
           onClick={handleMinus}
-          disabled={quantity === 0}
+          disabled={props.quantity === 0}
         >-</button>
-        {quantity}
+        {props.quantity}
         <button type="button" onClick={handlePlus}>+</button>
       </div>
       <div>{total}€</div>
