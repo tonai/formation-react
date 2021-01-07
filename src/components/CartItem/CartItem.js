@@ -1,5 +1,7 @@
 import './CartItem.css';
 
+import { formatPrice } from '../../services/formatter';
+
 function CartItem(props) {
   const total = props.price * props.quantity;
 
@@ -27,7 +29,7 @@ function CartItem(props) {
         {props.quantity}
         <button type="button" onClick={handlePlus}>+</button>
       </div>
-      <div>{total}€</div>
+      <div>{formatPrice(total)}</div>
     </div>
   );
 }

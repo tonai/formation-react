@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { formatPrice } from '../../services/formatter';
+
 import CartItem from '../CartItem/CartItem';
 
 function Cart() {
@@ -37,7 +39,7 @@ function Cart() {
   return (
     <div>
       {list}
-      <div>Total = {total}€</div>
+      <div>Total = {formatPrice(total)}</div>
     </div>
   );
 }
