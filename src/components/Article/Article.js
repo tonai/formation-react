@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Article.css';
 
 function Article(props) {
-  const [isSelected, setIsSelected] = useState(true);
+  const [isSelected, setIsSelected] = useState(false);
   // destructuring shortcut equivalent to:
   // const state = useState(false);
   // const isSelected = state[0];
@@ -15,7 +15,8 @@ function Article(props) {
   ];
 
   function handleClick() {
-    setIsSelected(!isSelected);
+    // setIsSelected(!isSelected);
+    setIsSelected(isSelected => !isSelected);
   }
 
   return (
