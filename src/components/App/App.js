@@ -5,6 +5,7 @@ import "./App.css";
 import Article from "../Article/Article";
 import Cart from "../Cart/Cart";
 import Header from "../Header/Header";
+import Resize from "../Resize/Resize";
 import Title from "../Title/Title";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Title title="Homepage" />
       {list}
       <Cart />
+      <Resize />
       <button type="button" onClick={handleClick}>{counter}</button>
     </div>
   );
