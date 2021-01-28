@@ -1,14 +1,19 @@
+import { Link } from 'react-router-dom';
+
 import logo from '../../logo.svg';
+
 import "./Header.css";
 
 function Header(props) {
   return (
     <div className="header">
-      <img
-        src={logo}
-        alt={props.alt}
-        height={props.size}
-      />
+      <Link to="/">
+        <img
+          src={logo}
+          alt={props.alt}
+          height={props.size}
+        />
+      </Link>
     </div>
   );
 }
