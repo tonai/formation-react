@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
+import { getArticles } from '../services/article';
+
 function useArticles() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/articles')
-      .then(response => response.json())
-      .then(json => setArticles(json));
+    getArticles().then(json => setArticles(json));
   }, []);
 
   return articles;
