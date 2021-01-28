@@ -1,3 +1,5 @@
+import CategorySelect from '../CategorySelect/CategorySelect';
+
 const maxLength = 255;
 
 function Filters(props) {
@@ -13,20 +15,14 @@ function Filters(props) {
     props.setPublished(event.target.value);
   }
 
-  const list = props.categories.map(category => (
-    <option
-      key={category.id}
-      value={category.id}
-    >{category.title}</option>
-  ));
-
   return (
     <div>
       <input onChange={handleTitleChange} value={props.title} maxLength={maxLength}/>
-      <select onChange={handleCategoryChange} value={props.category}>
-        <option value=""></option>
-        {list}
-      </select>
+      <CategorySelect
+        handleCategoryChange={handleCategoryChange}
+        category={props.category}
+        categories={props.categories}
+      />
 
       <label htmlFor="all">All:</label>
       <input
