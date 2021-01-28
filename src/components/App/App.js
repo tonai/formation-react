@@ -6,6 +6,7 @@ import useArticles from '../../hooks/useArticles';
 
 import Article from "../Article/Article";
 import Cart from "../Cart/Cart";
+import Container from "../Container/Container";
 import Filters from "../Filters/Filters"
 import Header from "../Header/Header";
 import Resize from "../Resize/Resize";
@@ -40,16 +41,18 @@ function App() {
     <div className="App">
       <Header alt="logo" />
       <Title title="Homepage" />
-      <Filters
-        title={title}
-        setTitle={setTitle}
-        category={category}
-        setCategory={setCategory}
-        published={published}
-        setPublished={setPublished}
-      />
-      {list}
-      <Cart />
+      <Container>
+        <Filters
+          title={title}
+          setTitle={setTitle}
+          category={category}
+          setCategory={setCategory}
+          published={published}
+          setPublished={setPublished}
+        />
+        {list}
+      </Container>
+      <Container children={<Cart />} />
       <Resize />
       <button type="button" onClick={handleClick}>{counter}</button>
     </div>

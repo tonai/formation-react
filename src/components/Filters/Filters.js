@@ -1,5 +1,6 @@
-function Filters(props) {
+const maxLength = 255;
 
+function Filters(props) {
   function handleTitleChange(event) {
     props.setTitle(event.target.value);
   }
@@ -14,7 +15,7 @@ function Filters(props) {
 
   return (
     <div>
-      <input onChange={handleTitleChange} value={props.title}/>
+      <input onChange={handleTitleChange} value={props.title} maxLength={maxLength}/>
       <select onChange={handleCategoryChange} value={props.category}>
         <option value=""></option>
         <option value="1">1</option>
