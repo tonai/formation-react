@@ -19,13 +19,18 @@ function Article(props) {
     setIsSelected(isSelected => !isSelected);
   }
 
+  // const categoryTitle = props.categories.find(category =>
+  //   category.id === props.article.category
+  // )?.title;
+  const categoryTitle = props.categoryTitles[props.article.category];
+
   return (
     <div
       className={rootClassName.join(' ')}
       onClick={handleClick}
     >
       <div>{props.article.title}</div>
-      <div>{props.article.category}</div>
+      <div>{categoryTitle}</div>
       <div>{props.article.published ?
         'Published' : 'Draft'}</div>
     </div>

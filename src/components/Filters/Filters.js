@@ -13,13 +13,19 @@ function Filters(props) {
     props.setPublished(event.target.value);
   }
 
+  const list = props.categories.map(category => (
+    <option
+      key={category.id}
+      value={category.id}
+    >{category.title}</option>
+  ));
+
   return (
     <div>
       <input onChange={handleTitleChange} value={props.title} maxLength={maxLength}/>
       <select onChange={handleCategoryChange} value={props.category}>
         <option value=""></option>
-        <option value="1">1</option>
-        <option value="2">2</option>
+        {list}
       </select>
 
       <label htmlFor="all">All:</label>

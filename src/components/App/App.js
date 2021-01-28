@@ -3,6 +3,7 @@ import { useState } from 'react';
 import "./App.css";
 
 import useArticles from '../../hooks/useArticles';
+import useCategories from '../../hooks/useCategories';
 
 import Article from "../Article/Article";
 import Cart from "../Cart/Cart";
@@ -18,6 +19,13 @@ function App() {
   const [category, setCategory] = useState('');
   const [published, setPublished] = useState('');
   const articles = useArticles();
+  const categories = useCategories();
+
+  const categoryTitles = {};
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    categoryTitles[category.id] = category.title;
+  }
 
   function handleClick() {
     setCounter(counter + 1);
@@ -34,7 +42,12 @@ function App() {
   });
 
   const list = filteredArticles.map(article =>
-    <Article article={article} key={article.id} />
+    <Article
+      article={article}
+      categories={categories}
+      categoryTitles={categoryTitles}
+      key={article.id}
+    />
   );
 
   return (
@@ -43,6 +56,7 @@ function App() {
       <Title title="Homepage" />
       <Container>
         <Filters
+          categories={categories}
           title={title}
           setTitle={setTitle}
           category={category}
