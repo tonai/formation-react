@@ -1,35 +1,21 @@
-import { useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import categoriesContext from "../../contexts/categories";
-import languageContext from "../../contexts/language";
+import i18nContext from "../../contexts/i18n";
 import useCategories from '../../hooks/useCategories';
-import fr from "../../locale/fr.json";
+import useI18n from '../../hooks/useI18n';
 
 import ArticlePage from '../ArticlePage/ArticlePage';
 import ArticlesPage from '../ArticlesPage/ArticlesPage';
 import Header from "../Header/Header";
 
 function App() {
-  const [language, setLanguage] = useState('en');
   const categories = useCategories();
-
-  function t(string) {
-    if (language === 'fr' && fr[string]) {
-      return fr[string];
-    }
-    return string;
-  }
-
-  const contextValue = {
-    t: t,
-    language: language,
-    setLanguage: setLanguage
-  };
+  const i18n = useI18n();
 
   return (
     <BrowserRouter>
-      <languageContext.Provider value={contextValue}>
+      <i18nContext.Provider value={i18n}>
         <categoriesContext.Provider value={categories}>
           <Header alt="logo"/>
           <Switch>
@@ -39,7 +25,7 @@ function App() {
             <Redirect to="/" />
           </Switch>
         </categoriesContext.Provider>
-      </languageContext.Provider>
+      </i18nContext.Provider>
     </BrowserRouter>
   );
 }

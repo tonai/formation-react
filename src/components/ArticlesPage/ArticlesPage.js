@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import categoriesContext from "../../contexts/categories";
-import languageContext from "../../contexts/language";
+import i18nContext from "../../contexts/i18n";
 
 import useArticles from '../../hooks/useArticles';
 
@@ -14,7 +14,7 @@ import Resize from "../Resize/Resize";
 import Title from "../Title/Title";
 
 function ArticlesPage() {
-  const contextValue = useContext(languageContext);
+  const i18n = useContext(i18nContext);
   const categories = useContext(categoriesContext);
   const [counter, setCounter] = useState(0);
   const [title, setTitle] = useState('');
@@ -52,7 +52,7 @@ function ArticlesPage() {
 
   return (
     <div className="App">
-      <Title title={contextValue.t('Homepage')} />
+      <Title title={i18n.t('Homepage')} />
       <Link to="/article">Create new article</Link>
       <Container>
         <Filters
