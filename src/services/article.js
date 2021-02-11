@@ -9,8 +9,12 @@ export function getArticle(id) {
 }
 
 export function createArticle(article) {
+  const clone = {...article};
+  clone.id = Number(clone.id);
+  clone.category = Number(clone.category);
+
   return fetch('http://localhost:3001/articles', {
-    body: JSON.stringify(article),
+    body: JSON.stringify(clone),
     headers: {
       'Content-Type': 'application/json'
     },
@@ -19,8 +23,12 @@ export function createArticle(article) {
 }
 
 export function editArticle(article) {
-  return fetch('http://localhost:3001/articles/' + article.id, {
-    body: JSON.stringify(article),
+  const clone = {...article};
+  clone.id = Number(clone.id);
+  clone.category = Number(clone.category);
+  
+  return fetch('http://localhost:3001/articles/' + clone.id, {
+    body: JSON.stringify(clone),
     headers: {
       'Content-Type': 'application/json'
     },

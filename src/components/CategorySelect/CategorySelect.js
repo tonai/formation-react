@@ -7,7 +7,7 @@ function CategorySelect(props) {
   ));
 
   return (
-    <select onChange={props.handleCategoryChange} value={props.category}>
+    <select onChange={props.handleCategoryChange} value={props.category} name="category">
       <option value=""></option>
       {list}
     </select>

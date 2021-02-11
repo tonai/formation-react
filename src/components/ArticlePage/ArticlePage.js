@@ -10,49 +10,39 @@ import Title from '../Title/Title';
 
 function ArticlePage(props) {
   const categories = useCategories();
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [published, setPublished] = useState(false);
+  const [article, setArticle] = useState({
+    title: '',
+    category: '',
+    published: false,
+    content: ''
+  });
   const history = useHistory();
   const id = props.match.params.id;
 
   useEffect(() => {
     if (id !== undefined) {
       getArticle(id).then((article) => {
-        setTitle(article.title);
-        setCategory(article.category);
-        setPublished(article.published);
+        setArticle(article);
       });
     }
   }, [id]);
 
-  function handleTitleChange(event) {
-    setTitle(event.target.value);
-  }
-
-  function handleCategoryChange(event) {
-    setCategory(event.target.value);
-  }
-
-  function handlePublishedChange(event) {
-    setPublished(event.target.checked);
+  function handleChange(event) {
+    const clone = {...article};
+    if (event.target.type === 'checkbox') {
+      clone[event.target.name] = event.target.checked;
+    } else {
+      clone[event.target.name] = event.target.value;
+    }
+    setArticle(clone);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     if (id === undefined) {
-      createArticle({
-        title: title,
-        category: Number(category),
-        published: published
-      }).then(() => history.push('/'));
+      createArticle(article).then(() => history.push('/'));
     } else {
-      editArticle({
-        id: id,
-        title: title,
-        category: Number(category),
-        published: published
-      }).then(() => history.push('/'));
+      editArticle(article).then(() => history.push('/'));
     }
   }
 
@@ -65,15 +55,15 @@ function ArticlePage(props) {
         <div>
           <label>
             Title:
-            <input onChange={handleTitleChange} value={title} />
+            <input onChange={handleChange} value={article.title} name="title" />
           </label>
         </div>
         <div>
           <label>
             Category:
             <CategorySelect
-              handleCategoryChange={handleCategoryChange}
-              category={category}
+              handleCategoryChange={handleChange}
+              category={article.category}
               categories={categories}
             />
           </label>
@@ -83,10 +73,14 @@ function ArticlePage(props) {
             Published:
             <input
               type="checkbox"
-              onChange={handlePublishedChange}
-              checked={published}
+              onChange={handleChange}
+              checked={article.published}
+              name="published"
             />
           </label>
+        </div>
+        <div>
+          <textarea onChange={handleChange} value={article.content} name="content"></textarea>
         </div>
         <input type="submit" />
       </form>
