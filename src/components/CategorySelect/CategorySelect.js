@@ -1,5 +1,11 @@
+import { useContext } from 'react';
+
+import categoriesContext from '../../contexts/categories';
+
 function CategorySelect(props) {
-  const list = props.categories.map(category => (
+  const categories = useContext(categoriesContext);
+
+  const list = categories.map(category => (
     <option
       key={category.id}
       value={category.id}

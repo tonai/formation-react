@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import useCategories from '../../hooks/useCategories';
-
 import { createArticle, editArticle, getArticle } from '../../services/article';
 
 import CategorySelect from '../CategorySelect/CategorySelect';
 import Title from '../Title/Title';
 
 function ArticlePage(props) {
-  const categories = useCategories();
   const [article, setArticle] = useState({
     title: '',
     category: '',
@@ -64,7 +61,6 @@ function ArticlePage(props) {
             <CategorySelect
               handleCategoryChange={handleChange}
               category={article.category}
-              categories={categories}
             />
           </label>
         </div>

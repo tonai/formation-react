@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import categoriesContext from "../../contexts/categories";
 import languageContext from "../../contexts/language";
 
 import useArticles from '../../hooks/useArticles';
-import useCategories from '../../hooks/useCategories';
 
 import Article from "../Article/Article";
 import Cart from "../Cart/Cart";
@@ -15,12 +15,12 @@ import Title from "../Title/Title";
 
 function ArticlesPage() {
   const contextValue = useContext(languageContext);
+  const categories = useContext(categoriesContext);
   const [counter, setCounter] = useState(0);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [published, setPublished] = useState('');
   const articles = useArticles();
-  const categories = useCategories();
 
   const categoryTitles = {};
   for (let i = 0; i < categories.length; i++) {
@@ -45,7 +45,6 @@ function ArticlesPage() {
   const list = filteredArticles.map(article =>
     <Article
       article={article}
-      categories={categories}
       categoryTitles={categoryTitles}
       key={article.id}
     />
@@ -57,7 +56,6 @@ function ArticlesPage() {
       <Link to="/article">Create new article</Link>
       <Container>
         <Filters
-          categories={categories}
           title={title}
           setTitle={setTitle}
           category={category}

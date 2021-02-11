@@ -21,7 +21,6 @@ function Filters(props) {
       <CategorySelect
         handleCategoryChange={handleCategoryChange}
         category={props.category}
-        categories={props.categories}
       />
 
       <label htmlFor="all">All:</label>
