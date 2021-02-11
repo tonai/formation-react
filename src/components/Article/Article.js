@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './Article.css';
 
 function Article(props) {
@@ -33,6 +35,9 @@ function Article(props) {
       <div>{categoryTitle}</div>
       <div>{props.article.published ?
         'Published' : 'Draft'}</div>
+      <div>
+        <Link to={'/article/' + props.article.id}>Edit</Link>
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ function App() {
       <Header alt="logo" />
       <Route path="/" exact component={ArticlesPage} />
       <Route path="/article" exact component={ArticlePage} />
+      <Route path="/article/:id" exact component={ArticlePage} />
     </BrowserRouter>
   );
 }
