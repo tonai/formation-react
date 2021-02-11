@@ -16,11 +16,7 @@ function Header(props) {
           height={props.size}
         />
       </Link>
-      <LanguageSwitcher
-        t={props.t}
-        language={props.language}
-        setLanguage={props.setLanguage}
-      />
+      <LanguageSwitcher/>
     </div>
   );
 }

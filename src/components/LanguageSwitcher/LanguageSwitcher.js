@@ -1,22 +1,28 @@
+import { useContext } from 'react';
+
+import languageContext from "../../contexts/language";
+
 import "./LanguageSwitcher.css";
 
-function LanguageSwitcher(props) {
+function LanguageSwitcher() {
+  const contextValue = useContext(languageContext);
+
   function handleClick(event) {
-    props.setLanguage(event.target.name);
+    contextValue.setLanguage(event.target.name);
   }
 
   return (
     <div className="LanguageSwitcher">
       <button
-        className={props.language !== 'fr' ? 'disabled' : ''}
+        className={contextValue.language !== 'fr' ? 'disabled' : ''}
         onClick={handleClick}
         name="fr"
-      >{props.t('French')}</button>
+      >{contextValue.t('French')}</button>
       <button
-        className={props.language !== 'en' ? 'disabled' : ''}
+        className={contextValue.language !== 'en' ? 'disabled' : ''}
         onClick={handleClick}
         name="en"
-      >{props.t('English')}</button>
+      >{contextValue.t('English')}</button>
     </div>
   );
 }

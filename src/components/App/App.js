@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
+import languageContext from "../../contexts/language";
 import fr from "../../locale/fr.json";
 
 import ArticlePage from '../ArticlePage/ArticlePage';
@@ -17,32 +18,23 @@ function App() {
     return string;
   }
 
+  const contextValue = {
+    t: t,
+    language: language,
+    setLanguage: setLanguage
+  };
+
   return (
     <BrowserRouter>
-      <Header
-        alt="logo"
-        language={language}
-        setLanguage={setLanguage}
-        t={t}
-      />
-      <Switch>
-        <Route
-          path="/"
-          exact
-          render={() => <ArticlesPage t={t} />}
-        />
-        <Route
-          path="/article"
-          exact
-          render={() => <ArticlePage t={t} />}
-        />
-        <Route
-          path="/article/:id"
-          exact
-          render={(props) => <ArticlePage t={t} id={props.match.params.id} />}
-        />
-        <Redirect to="/" />
-      </Switch>
+      <languageContext.Provider value={contextValue}>
+        <Header alt="logo"/>
+        <Switch>
+          <Route path="/" exact component={ArticlesPage}/>
+          <Route path="/article" exact component={ArticlePage}/>
+          <Route path="/article/:id" exact render={ArticlePage}/>
+          <Redirect to="/" />
+        </Switch>
+      </languageContext.Provider>
     </BrowserRouter>
   );
 }
