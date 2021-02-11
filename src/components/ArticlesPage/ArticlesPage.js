@@ -6,6 +6,8 @@ import i18nContext from "../../contexts/i18n";
 
 import useArticles from '../../hooks/useArticles';
 
+import { deleteArticle, getArticles } from '../../services/article';
+
 import Article from "../Article/Article";
 import Cart from "../Cart/Cart";
 import Container from "../Container/Container";
@@ -20,7 +22,7 @@ function ArticlesPage() {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [published, setPublished] = useState('');
-  const articles = useArticles();
+  const [articles, setArticles] = useArticles();
 
   const categoryTitles = {};
   for (let i = 0; i < categories.length; i++) {
@@ -30,6 +32,21 @@ function ArticlesPage() {
 
   function handleClick() {
     setCounter(counter + 1);
+  }
+
+  function handleDelete(id) {
+    // 1 solution
+    // deleteArticle(id)
+    //   .then(() => getArticles())
+    //   .then(articles => setArticles(articles));
+
+    // 2 solution
+    const newArticles = articles.filter(article => article.id !== id);
+    deleteArticle(id).then(() => setArticles(newArticles));
+
+    // 3 solution
+    // setArticles(newArticles);
+    // deleteArticle(id).catch(() => getArticles().then(articles => setArticles(articles)));
   }
 
   const filteredArticles = articles.filter(article => {
@@ -47,6 +64,7 @@ function ArticlesPage() {
       article={article}
       categoryTitles={categoryTitles}
       key={article.id}
+      handleDelete={handleDelete}
     />
   );
 

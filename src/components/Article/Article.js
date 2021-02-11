@@ -16,6 +16,11 @@ function Article(props) {
     setIsSelected(isSelected => !isSelected);
   }
 
+  function handleDelete(event) {
+    event.stopPropagation();
+    props.handleDelete(props.article.id);
+  }
+
   const categoryTitle = props.categoryTitles[props.article.category];
 
   return (
@@ -29,6 +34,9 @@ function Article(props) {
         'Published' : 'Draft'}</div>
       <div>
         <Link to={'/article/' + props.article.id}>Edit</Link>
+      </div>
+      <div>
+        <button type="button" onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );

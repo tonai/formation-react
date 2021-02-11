@@ -8,6 +8,12 @@ export function getArticle(id) {
     .then(response => response.json());
 }
 
+export function deleteArticle(id) {
+  return fetch('http://localhost:3001/articles/' + id, {
+    method: 'DELETE'
+  }).then(response => response.json());
+}
+
 export function createArticle(article) {
   const clone = {...article};
   clone.id = Number(clone.id);
