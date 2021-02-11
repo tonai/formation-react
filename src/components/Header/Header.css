@@ -1,3 +1,7 @@
 .header {
   background-color: black;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  align-content: center;
 }

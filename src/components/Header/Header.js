@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../logo.svg';
 
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
+
 import "./Header.css";
 
 function Header(props) {
@@ -14,6 +16,11 @@ function Header(props) {
           height={props.size}
         />
       </Link>
+      <LanguageSwitcher
+        t={props.t}
+        language={props.language}
+        setLanguage={props.setLanguage}
+      />
     </div>
   );
 }

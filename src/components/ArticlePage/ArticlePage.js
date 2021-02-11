@@ -17,7 +17,7 @@ function ArticlePage(props) {
     content: ''
   });
   const history = useHistory();
-  const id = props.match.params.id;
+  const id = props.id;
 
   useEffect(() => {
     if (id !== undefined) {

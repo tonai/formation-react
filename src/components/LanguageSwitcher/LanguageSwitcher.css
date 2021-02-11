@@ -1,0 +1,13 @@
+.LanguageSwitcher {
+  display: flex;
+  align-content: center;
+}
+
+.LanguageSwitcher button {
+  height: 20px;
+}
+
+
+.LanguageSwitcher .disabled {
+  background-color: grey;
+}

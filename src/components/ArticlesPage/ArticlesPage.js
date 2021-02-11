@@ -11,7 +11,7 @@ import Filters from "../Filters/Filters"
 import Resize from "../Resize/Resize";
 import Title from "../Title/Title";
 
-function ArticlesPage() {
+function ArticlesPage(props) {
   const [counter, setCounter] = useState(0);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -50,7 +50,7 @@ function ArticlesPage() {
 
   return (
     <div className="App">
-      <Title title="Homepage" />
+      <Title title={props.t('Homepage')} />
       <Link to="/article">Create new article</Link>
       <Container>
         <Filters
